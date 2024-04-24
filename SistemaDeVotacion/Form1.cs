@@ -1,3 +1,5 @@
+using SistemaDeVotacion.dao;
+using SistemaDeVotacion.model;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -35,82 +37,24 @@ namespace SistemaDeVotacion
 
         public void cargarDatos()
         {
-
-            if (db.OpenConnection())
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT id, nombre FROM departamento", db.GetConnection());
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    DataRow dr = dt.NewRow();
-                    dr["nombre"] = "Selecciona un departamento";
-                    dt.Rows.InsertAt(dr, 0);
-
-                    comboBox1.ValueMember = "id";
-                    comboBox1.DisplayMember = "nombre";
-                    comboBox1.DataSource = dt;
-
-                }
-                catch (Exception ex)
-                {
-                    //error al cargar datos
-                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
-                }
-                finally
-                {
-                    db.CloseConnection();
-                }
-
-            }
-            else
-            {
-                //error en la conexion
-                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
-            }
-
+            DepartamentoDao departamentoDao = new DepartamentoDao();
+            List<Departamento> departamentos = departamentoDao.buscarDepartamentos();
+            
+                comboBox1.ValueMember = "id";
+                comboBox1.DisplayMember = "nombre";
+                comboBox1.DataSource = departamentos;
 
         }
 
         public void cargarCandidatos(string idDepartamento)
         {
-            if (db.OpenConnection())
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT id, nombre, apellidos FROM candidato WHERE id_departamento = @idDepartamento", db.GetConnection());
-                    cmd.Parameters.AddWithValue("idDepartamento", idDepartamento);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+            CandidatoDao candidatoDao = new CandidatoDao();
 
-                    DataRow dr = dt.NewRow();
-                    dr["nombre"] = "Selecciona un candidato";
-                    dt.Rows.InsertAt(dr, 0);
+            List<Candidato> candidatos = candidatoDao.buscarCandidatosPorDepartamento(idDepartamento);
 
-                    comboBox2.ValueMember = "id";
-                    comboBox2.DisplayMember = "nombre";
-                    comboBox2.DataSource = dt;
-
-                }
-                catch (Exception ex)
-                {
-                    //error al cargar datos
-                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
-                }
-                finally
-                {
-                    db.CloseConnection();
-                }
-
-            }
-            else
-            {
-                //error en la conexion
-               // MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
-            }
+            comboBox2.DataSource = candidatos;
+            comboBox2.ValueMember = "id";
+            comboBox2.DisplayMember = "nombre";
 
         }
 
