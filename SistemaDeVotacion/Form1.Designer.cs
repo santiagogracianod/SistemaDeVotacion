@@ -36,7 +36,11 @@
             panel2 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
+            button4 = new Button();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
             pMenu.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // pMenu
@@ -48,7 +52,7 @@
             pMenu.Dock = DockStyle.Top;
             pMenu.Location = new Point(0, 0);
             pMenu.Name = "pMenu";
-            pMenu.Size = new Size(800, 45);
+            pMenu.Size = new Size(492, 45);
             pMenu.TabIndex = 1;
             // 
             // button3
@@ -86,7 +90,8 @@
             // button1
             // 
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(752, 3);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(752, -3);
             button1.Name = "button1";
             button1.Size = new Size(45, 45);
             button1.TabIndex = 0;
@@ -106,7 +111,7 @@
             // 
             panel2.BackColor = Color.FromArgb(51, 62, 80);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(795, 45);
+            panel2.Location = new Point(487, 45);
             panel2.Name = "panel2";
             panel2.Size = new Size(5, 405);
             panel2.TabIndex = 3;
@@ -117,24 +122,55 @@
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(5, 442);
             panel3.Name = "panel3";
-            panel3.Size = new Size(790, 8);
+            panel3.Size = new Size(482, 8);
             panel3.TabIndex = 4;
             // 
             // panel4
             // 
             panel4.BackColor = Color.LightGray;
             panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Controls.Add(button4);
+            panel4.Controls.Add(comboBox2);
+            panel4.Controls.Add(comboBox1);
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(5, 45);
             panel4.Name = "panel4";
-            panel4.Size = new Size(790, 397);
+            panel4.Size = new Size(482, 397);
             panel4.TabIndex = 5;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(183, 233);
+            button4.Name = "button4";
+            button4.Size = new Size(93, 37);
+            button4.TabIndex = 2;
+            button4.Text = "Votar";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(273, 132);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(136, 23);
+            comboBox2.TabIndex = 1;
+            comboBox2.Text = "Candidato";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(56, 132);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(136, 23);
+            comboBox1.TabIndex = 0;
+            comboBox1.Text = "Departamento";
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(492, 450);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -145,6 +181,7 @@
             Text = "Form1";
             Load += Form1_Load;
             pMenu.ResumeLayout(false);
+            panel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -157,5 +194,8 @@
         private Panel panel4;
         private Button button2;
         private Button button3;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private Button button4;
     }
 }
