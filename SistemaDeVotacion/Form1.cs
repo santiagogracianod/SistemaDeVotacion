@@ -109,20 +109,62 @@ namespace SistemaDeVotacion
             else
             {
                 //error en la conexion
-               // MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                // MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
             }
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedValue.ToString != null) 
+            if (comboBox1.SelectedValue.ToString != null)
             {
                 string idDepartamento = comboBox1.SelectedValue.ToString();
                 cargarCandidatos(idDepartamento);
 
 
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // Verificar si se han seleccionado candidato y departamento
+            if (comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor selecciona un candidato y un departamento.");
+                return;
+            }
+
+            // Obtener el ID del departamento seleccionado en el ComboBox
+            int candidatoID = (int)comboBox1.SelectedValue;
+
+            // Obtener el ID del cantidado seleccionado en el ComboBox
+            int departamentoID = (int)comboBox2.SelectedValue;
+
+            // Guardar el voto en la base de datos
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, id_departamento, fecha) VALUES (@CandidatoID, @DepartamentoID, GETDATE())", db.GetConnection());
+                    cmd.Parameters.AddWithValue("@CandidatoID", candidatoID);
+                    cmd.Parameters.AddWithValue("@DepartamentoID", departamentoID);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Voto registrado exitosamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al guardar el voto: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+
         }
     }
 }
