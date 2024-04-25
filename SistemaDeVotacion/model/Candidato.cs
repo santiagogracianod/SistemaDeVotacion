@@ -11,9 +11,21 @@ namespace SistemaDeVotacion.model
         int id;
         string nombre;
         string apellido;
+        int edad;
+        int idDepartamento;
+        int idPartido;
+
 
         public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
+        public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
+        public int IdPartido { get => idPartido; set => idPartido = value; }
+        public int Edad { get => edad; set => edad = value; }
+
+        public string NombreCompletoYPartido
+        {
+            get { return $"{Nombre} {Apellido} {IdPartido}"; }
+        }
     }
 }

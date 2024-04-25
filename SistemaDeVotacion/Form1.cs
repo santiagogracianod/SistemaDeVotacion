@@ -2,6 +2,9 @@ using SistemaDeVotacion.dao;
 using SistemaDeVotacion.model;
 using System.Data;
 using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SistemaDeVotacion
 {
@@ -10,7 +13,7 @@ namespace SistemaDeVotacion
         public Form1()
         {
             InitializeComponent();
-            cargarDatos();
+            cargarDepartamentos();
         }
 
         Panel p = new Panel();
@@ -25,12 +28,12 @@ namespace SistemaDeVotacion
 
         private void btnMouseEnter(object sender, EventArgs e)
         {
-             Button btn = sender as Button;
-             pMenu.Controls.Add(p);
-             p.BackColor = Color.FromArgb(90, 210, 2);
-             p.Size = new Size(140, 5);
-             p.Location = new Point(btn.Location.X, btn.Location.Y + 40);
-         
+            Button btn = sender as Button;
+            pMenu.Controls.Add(p);
+            p.BackColor = Color.FromArgb(90, 210, 2);
+            p.Size = new Size(140, 5);
+            p.Location = new Point(btn.Location.X, btn.Location.Y + 40);
+
         }
 
         private void btnMouseLeave(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace SistemaDeVotacion
             pMenu.Controls.Remove(p);
         }
 
-        public void cargarDatos()
+        public void cargarDepartamentos()
         {
             DepartamentoDao departamentoDao = new DepartamentoDao();
             List<Departamento> departamentos = departamentoDao.buscarDepartamentos();
@@ -57,7 +60,7 @@ namespace SistemaDeVotacion
 
             comboBox2.DataSource = candidatos;
             comboBox2.ValueMember = "id";
-            comboBox2.DisplayMember = "nombre";
+            comboBox2.DisplayMember = "NombreCompletoYPartido";
 
         }
 
@@ -134,6 +137,13 @@ namespace SistemaDeVotacion
 
         private void button6_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            FomularioCandidato formularioCandidato = new FomularioCandidato();
+            formularioCandidato.Show();
 
         }
     }

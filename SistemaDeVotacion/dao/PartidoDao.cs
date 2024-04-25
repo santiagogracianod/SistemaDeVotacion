@@ -9,29 +9,30 @@ using System.Threading.Tasks;
 
 namespace SistemaDeVotacion.dao
 {
-    internal class DepartamentoDao
+    internal class PartidoDao
     {
-        public List<Departamento> buscarDepartamentos() {
+        public List<Partido> buscarPartido()
+        {
             DbConnection db = new DbConnection();
-            List<Departamento> departamentos = new List<Departamento>();
-
+            List<Partido> partidos = new List<Partido>();
+            
             if (db.OpenConnection())
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT id, nombre FROM departamento", db.GetConnection());
+                    SqlCommand cmd = new SqlCommand("SELECT id, nombre FROM partido", db.GetConnection());
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    foreach (DataRow row in dt.Rows) 
+                    foreach (DataRow row in dt.Rows)
                     {
                         Object[] properties = row.ItemArray;
-                        Departamento departamento = new Departamento();
-                        departamento.Id = Convert.ToInt32(properties[0]);
-                        departamento.Nombre = properties[1].ToString();
+                        Partido partido = new Partido();
+                        partido.Id = Convert.ToInt32(properties[0]);
+                        partido.Nombre = properties[1].ToString();
 
-                        departamentos.Add(departamento);
+                        partidos.Add(partido);
                     }
                 }
                 catch (Exception ex)
@@ -45,8 +46,8 @@ namespace SistemaDeVotacion.dao
                 }
 
             }
-         
-            return departamentos;
+           
+            return partidos;
         }
     }
 }
