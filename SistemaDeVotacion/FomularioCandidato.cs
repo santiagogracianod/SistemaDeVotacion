@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 using SistemaDeVotacion.dao;
 using SistemaDeVotacion.model;
 
@@ -46,10 +38,8 @@ namespace SistemaDeVotacion
             comboBoxPartido.DataSource = partidos;
         }
 
-        // Evento Click del botón Aceptar para agregar un nuevo candidato
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
-            // Crea un nuevo objeto Candidato con los datos ingresados
             Partido partido = new Partido();
             partido.Id = (int)comboBoxPartido.SelectedValue;
             Candidato nuevoCandidato = new Candidato
@@ -61,19 +51,15 @@ namespace SistemaDeVotacion
                 Partido = partido
             };
 
-            // Llama al método agregarCandidato del CandidatoDao
             bool resultado = candidatoDao.agregarCandidato(nuevoCandidato);
 
-            // Verifica el resultado de la operación y muestra un mensaje
             if (resultado)
             {
                 MessageBox.Show("Candidato agregado correctamente.");
-                // Aquí puedes realizar acciones adicionales después de agregar el candidato, si es necesario
             }
             else
             {
                 MessageBox.Show("Error al agregar candidato.");
-                // Aquí puedes manejar el caso en que no se pueda agregar el candidato
             }
         }
 

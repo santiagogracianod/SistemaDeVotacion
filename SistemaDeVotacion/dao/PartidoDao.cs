@@ -37,7 +37,6 @@ namespace SistemaDeVotacion.dao
                 }
                 catch (Exception ex)
                 {
-                    //error al cargar datos
                     MessageBox.Show("Error al cargar los datos: " + ex.Message);
                 }
                 finally

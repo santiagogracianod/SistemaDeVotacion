@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿
 
 namespace SistemaDeVotacion
 {
@@ -25,7 +23,6 @@ namespace SistemaDeVotacion
 
         private void buttonRegresar_Click(object sender, EventArgs e)
         {
-            // Cerrar el formulario MergeSortForm
             this.Close();
         }
     }

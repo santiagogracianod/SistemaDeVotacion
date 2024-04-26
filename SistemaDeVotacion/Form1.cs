@@ -1,12 +1,8 @@
 using SistemaDeVotacion.dao;
 using SistemaDeVotacion.model;
-using System.Data;
 using System.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using SistemaDeVotacion.servicios;
-using System.Text;
+
 
 namespace SistemaDeVotacion
 {
