@@ -172,7 +172,7 @@ namespace SistemaDeVotacion
                         cmd.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show(cantidadVotos + "votos simulados registrados exitosamente.");
+                    MessageBox.Show(cantidadVotos + " votos simulados registrados exitosamente.");
                 }
                 catch (Exception ex)
                 {
@@ -229,7 +229,7 @@ namespace SistemaDeVotacion
 
         private void button8_Click(object sender, EventArgs e)
         {
-            string prompt = "Ingrese la cantidad de votos deseada:";
+            string prompt = "Ingrese votos:";
             string title = "Ingresar Cantidad de Votos";
 
             int cantidadVotos = MostrarInputBox(prompt, title);
