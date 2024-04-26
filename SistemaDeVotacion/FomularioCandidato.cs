@@ -50,13 +50,15 @@ namespace SistemaDeVotacion
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
             // Crea un nuevo objeto Candidato con los datos ingresados
+            Partido partido = new Partido();
+            partido.Id = (int)comboBoxPartido.SelectedValue;
             Candidato nuevoCandidato = new Candidato
             {
                 Nombre = textBoxNombre.Text,
                 Apellido = textBoxApellido.Text,
                 Edad = int.Parse(textBoxEdad.Text),
                 IdDepartamento = (int)comboBoxDepartamento.SelectedValue,
-                IdPartido = (int)comboBoxPartido.SelectedValue
+                Partido = partido
             };
 
             // Llama al método agregarCandidato del CandidatoDao

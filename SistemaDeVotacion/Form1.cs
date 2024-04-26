@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SistemaDeVotacion.servicios;
+using System.Text;
 
 namespace SistemaDeVotacion
 {
@@ -21,9 +23,7 @@ namespace SistemaDeVotacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             panelAdministrador.Visible = false;
-
         }
 
         private void btnMouseEnter(object sender, EventArgs e)
@@ -33,7 +33,6 @@ namespace SistemaDeVotacion
             p.BackColor = Color.FromArgb(90, 210, 2);
             p.Size = new Size(140, 5);
             p.Location = new Point(btn.Location.X, btn.Location.Y + 40);
-
         }
 
         private void btnMouseLeave(object sender, EventArgs e)
@@ -58,20 +57,17 @@ namespace SistemaDeVotacion
 
             List<Candidato> candidatos = candidatoDao.buscarCandidatosPorDepartamento(idDepartamento);
 
-            comboBox2.DataSource = candidatos;
             comboBox2.ValueMember = "id";
             comboBox2.DisplayMember = "NombreCompletoYPartido";
-
+            comboBox2.DataSource = candidatos;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedValue.ToString != null)
+            if (comboBox1.SelectedItem != null)
             {
                 string idDepartamento = comboBox1.SelectedValue.ToString();
                 cargarCandidatos(idDepartamento);
-
-
             }
         }
 
@@ -95,9 +91,8 @@ namespace SistemaDeVotacion
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, id_departamento, fecha) VALUES (@CandidatoID, @DepartamentoID, GETDATE())", db.GetConnection());
+                    SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());
                     cmd.Parameters.AddWithValue("@CandidatoID", candidatoID);
-                    cmd.Parameters.AddWithValue("@DepartamentoID", departamentoID);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Voto registrado exitosamente.");
                 }
@@ -145,6 +140,25 @@ namespace SistemaDeVotacion
             FomularioCandidato formularioCandidato = new FomularioCandidato();
             formularioCandidato.Show();
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DepartamentoDao departamentoDao = new DepartamentoDao();
+            Dictionary<string, int> votosPorDepartamentos = departamentoDao.votosPorDepartamento();
+
+            Dictionary<string,int> votosOrdenados =            OrdenamientoMezcla.votosPorDepartamento(votosPorDepartamentos);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Votos por Departamento (Ordenados de Mayor a Menor):");
+            foreach (var kvp in votosOrdenados)
+            {
+                sb.AppendLine($"{kvp.Key}: {kvp.Value}");
+            }
+
+            // Mostrar la cadena en un MessageBox
+            MessageBox.Show(sb.ToString(), "Votos Ordenados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        
         }
     }
 }

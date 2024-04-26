@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             pMenu = new Panel();
-            buttonVotantes = new Button();
             buttonAdmin = new Button();
             button1 = new Button();
+            buttonVotantes = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
             panelVotantes = new Panel();
-            button4 = new Button();
             panelAdministrador = new Panel();
             buttonAgregarCandidato = new Button();
             button8 = new Button();
             button2 = new Button();
             button3 = new Button();
             button5 = new Button();
+            button4 = new Button();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             pMenu.SuspendLayout();
@@ -61,23 +61,6 @@
             pMenu.Name = "pMenu";
             pMenu.Size = new Size(492, 45);
             pMenu.TabIndex = 1;
-            // 
-            // buttonVotantes
-            // 
-            buttonVotantes.Cursor = Cursors.Hand;
-            buttonVotantes.FlatAppearance.BorderSize = 0;
-            buttonVotantes.FlatStyle = FlatStyle.Flat;
-            buttonVotantes.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonVotantes.ForeColor = Color.White;
-            buttonVotantes.Location = new Point(79, 0);
-            buttonVotantes.Name = "buttonVotantes";
-            buttonVotantes.Size = new Size(140, 40);
-            buttonVotantes.TabIndex = 1;
-            buttonVotantes.Text = "Votantes";
-            buttonVotantes.UseVisualStyleBackColor = true;
-            buttonVotantes.Click += buttonVotantes_Click;
-            buttonVotantes.MouseEnter += btnMouseEnter;
-            buttonVotantes.MouseLeave += btnMouseLeave;
             // 
             // buttonAdmin
             // 
@@ -106,6 +89,23 @@
             button1.TabIndex = 0;
             button1.Text = "X";
             button1.UseVisualStyleBackColor = true;
+            // 
+            // buttonVotantes
+            // 
+            buttonVotantes.Cursor = Cursors.Hand;
+            buttonVotantes.FlatAppearance.BorderSize = 0;
+            buttonVotantes.FlatStyle = FlatStyle.Flat;
+            buttonVotantes.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonVotantes.ForeColor = Color.White;
+            buttonVotantes.Location = new Point(79, 0);
+            buttonVotantes.Name = "buttonVotantes";
+            buttonVotantes.Size = new Size(140, 40);
+            buttonVotantes.TabIndex = 1;
+            buttonVotantes.Text = "Votantes";
+            buttonVotantes.UseVisualStyleBackColor = true;
+            buttonVotantes.Click += buttonVotantes_Click;
+            buttonVotantes.MouseEnter += btnMouseEnter;
+            buttonVotantes.MouseLeave += btnMouseLeave;
             // 
             // panel1
             // 
@@ -138,25 +138,15 @@
             // 
             panelVotantes.BackColor = Color.LightGray;
             panelVotantes.BorderStyle = BorderStyle.Fixed3D;
-            panelVotantes.Controls.Add(panelAdministrador);
             panelVotantes.Controls.Add(button4);
+            panelVotantes.Controls.Add(comboBox1);
+            panelVotantes.Controls.Add(comboBox2);
+            panelVotantes.Controls.Add(panelAdministrador);
             panelVotantes.Dock = DockStyle.Fill;
             panelVotantes.Location = new Point(5, 45);
             panelVotantes.Name = "panelVotantes";
             panelVotantes.Size = new Size(487, 397);
             panelVotantes.TabIndex = 5;
-            panelVotantes.Controls.Add(comboBox2);
-            panelVotantes.Controls.Add(comboBox1);
-            // 
-            // button4
-            // 
-            button4.Location = new Point(183, 233);
-            button4.Name = "button4";
-            button4.Size = new Size(93, 37);
-            button4.TabIndex = 2;
-            button4.Text = "Votar";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // panelAdministrador
             // 
@@ -205,6 +195,7 @@
             button2.Text = "Votos por departamento";
             button2.UseVisualStyleBackColor = true;
             button2.UseWaitCursor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -226,12 +217,22 @@
             button5.UseVisualStyleBackColor = true;
             button5.UseWaitCursor = true;
             // 
+            // button4
+            // 
+            button4.Location = new Point(183, 233);
+            button4.Name = "button4";
+            button4.Size = new Size(93, 37);
+            button4.TabIndex = 2;
+            button4.Text = "Votar";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(141, 101);
+            comboBox2.Location = new Point(37, 101);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(200, 23);
+            comboBox2.Size = new Size(400, 23);
             comboBox2.TabIndex = 1;
             comboBox2.Text = "Candidato";
             comboBox2.UseWaitCursor = true;

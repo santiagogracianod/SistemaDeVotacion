@@ -20,7 +20,7 @@ namespace SistemaDeVotacion.dao
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT id, nombre, apellidos,id_partido FROM candidato WHERE id_departamento = @idDepartamento", db.GetConnection());
+                    SqlCommand cmd = new SqlCommand("SELECT c.[id],c.[nombre],c.[apellidos],c.[id_departamento],c.[id_partido],p.nombre FROM [dbo].[candidato] c JOIN [partido] p ON p.id = c.id_partido WHERE c.[id_departamento] = @idDepartamento", db.GetConnection());
                     cmd.Parameters.AddWithValue("idDepartamento", departamento);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -31,8 +31,15 @@ namespace SistemaDeVotacion.dao
                         candidato.Id = Convert.ToInt32(properties[0]);
                         candidato.Nombre = properties[1].ToString();
                         candidato.Apellido = properties[2].ToString();
-                        candidato.IdPartido = Convert.ToInt32(properties[3]);
+                        //candidato.IdPartido = Convert.ToInt32(properties[3]);
+
+                        Partido partido = new Partido();
+                        partido.Id = Convert.ToInt32(properties[4]);
+                        partido.Nombre = properties[5].ToString();
+                        candidato.Partido = partido;
+
                         candidatos.Add(candidato);
+
 
                     }
 
@@ -69,7 +76,7 @@ namespace SistemaDeVotacion.dao
                     cmd.Parameters.AddWithValue("@Apellidos", candidato.Apellido);
                     cmd.Parameters.AddWithValue("@Edad", candidato.Edad);
                     cmd.Parameters.AddWithValue("@IdDepartamento", candidato.IdDepartamento);
-                    cmd.Parameters.AddWithValue("@IdPartido", candidato.IdPartido);
+                    cmd.Parameters.AddWithValue("@IdPartido", candidato.Partido.Id);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
