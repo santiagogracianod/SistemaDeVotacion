@@ -43,8 +43,8 @@
             button3 = new Button();
             button5 = new Button();
             button4 = new Button();
-            comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
             pMenu.SuspendLayout();
             panelVotantes.SuspendLayout();
             panelAdministrador.SuspendLayout();
@@ -138,10 +138,10 @@
             // 
             panelVotantes.BackColor = Color.LightGray;
             panelVotantes.BorderStyle = BorderStyle.Fixed3D;
+            panelVotantes.Controls.Add(panelAdministrador);
             panelVotantes.Controls.Add(button4);
             panelVotantes.Controls.Add(comboBox1);
             panelVotantes.Controls.Add(comboBox2);
-            panelVotantes.Controls.Add(panelAdministrador);
             panelVotantes.Dock = DockStyle.Fill;
             panelVotantes.Location = new Point(5, 45);
             panelVotantes.Name = "panelVotantes";
@@ -185,6 +185,7 @@
             button8.Text = "Simular votación";
             button8.UseVisualStyleBackColor = true;
             button8.UseWaitCursor = true;
+            button8.Click += button8_Click;
             // 
             // button2
             // 
@@ -227,16 +228,6 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(37, 101);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(400, 23);
-            comboBox2.TabIndex = 1;
-            comboBox2.Text = "Candidato";
-            comboBox2.UseWaitCursor = true;
-            // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
@@ -247,6 +238,16 @@
             comboBox1.Text = "Departamento";
             comboBox1.UseWaitCursor = true;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(37, 101);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(400, 23);
+            comboBox2.TabIndex = 1;
+            comboBox2.Text = "Candidato";
+            comboBox2.UseWaitCursor = true;
             // 
             // Form1
             // 

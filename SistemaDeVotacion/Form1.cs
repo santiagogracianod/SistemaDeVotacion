@@ -48,7 +48,6 @@ namespace SistemaDeVotacion
             comboBox1.ValueMember = "id";
             comboBox1.DisplayMember = "nombre";
             comboBox1.DataSource = departamentos;
-
         }
 
         public void cargarCandidatos(string idDepartamento)
@@ -118,8 +117,6 @@ namespace SistemaDeVotacion
             panelAdministrador.BringToFront(); // Asegura que panelAdministrador esté en la parte superior
             //panelVotantes.Visible = false;
             panelAdministrador.Visible = true;
-
-
         }
 
         private void buttonVotantes_Click(object sender, EventArgs e)
@@ -127,7 +124,6 @@ namespace SistemaDeVotacion
             panelAdministrador.Visible = false;
             panelVotantes.BringToFront(); // Asegura que panelVotantes esté en la parte superior
             panelVotantes.Visible = true;
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -139,7 +135,6 @@ namespace SistemaDeVotacion
         {
             FomularioCandidato formularioCandidato = new FomularioCandidato();
             formularioCandidato.Show();
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -147,18 +142,110 @@ namespace SistemaDeVotacion
             DepartamentoDao departamentoDao = new DepartamentoDao();
             Dictionary<string, int> votosPorDepartamentos = departamentoDao.votosPorDepartamento();
 
-            Dictionary<string,int> votosOrdenados =            OrdenamientoMezcla.votosPorDepartamento(votosPorDepartamentos);
+            Dictionary<string, int> votosOrdenados = OrdenamientoMezcla.votosPorDepartamento(votosPorDepartamentos);
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Votos por Departamento (Ordenados de Mayor a Menor):");
-            foreach (var kvp in votosOrdenados)
+            MergeSortForm mergeSortForm = new MergeSortForm(votosOrdenados);
+            mergeSortForm.Show();
+        }
+
+        private void SimularVotos(int cantidadVotos)
+        {
+            CandidatoDao candidatoDao = new CandidatoDao();
+            int maxCandidatoID = candidatoDao.ObtenerMaximoID();
+
+            Random random = new Random();
+
+            if (db.OpenConnection())
             {
-                sb.AppendLine($"{kvp.Key}: {kvp.Value}");
-            }
+                try
+                {
+                    for (int i = 0; i < cantidadVotos; i++)
+                    {
+                        // Generar IDs aleatorios para candidato y departamento dentro del rango válido
+                        int candidatoID = random.Next(1, maxCandidatoID + 1);
+                        int departamentoID = random.Next(1, 32 + 1);
 
-            // Mostrar la cadena en un MessageBox
-            MessageBox.Show(sb.ToString(), "Votos Ordenados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        
+                        // Insertar voto en la base de datos
+                        SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());
+                        cmd.Parameters.AddWithValue("@CandidatoID", candidatoID);
+                        
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show(cantidadVotos + "votos simulados registrados exitosamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al simular y guardar votos: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+        }
+
+        public static int MostrarInputBox(string prompt, string title)
+        {
+            Form promptForm = new Form();
+            promptForm.Width = 300;
+            promptForm.Height = 150;
+            promptForm.Text = title;
+
+            Label lblPrompt = new Label() { Left = 20, Top = 20, Text = prompt };
+            TextBox txtInput = new TextBox() { Left = 20, Top = 50, Width = 200 };
+            Button btnOk = new Button() { Text = "Aceptar", Left = 20, Width = 80, Top = 80 };
+            Button btnCancel = new Button() { Text = "Cancelar", Left = 120, Width = 80, Top = 80 };
+
+            btnOk.Click += (sender, e) => { promptForm.DialogResult = DialogResult.OK; };
+            btnCancel.Click += (sender, e) => { promptForm.DialogResult = DialogResult.Cancel; };
+
+            promptForm.Controls.Add(lblPrompt);
+            promptForm.Controls.Add(txtInput);
+            promptForm.Controls.Add(btnOk);
+            promptForm.Controls.Add(btnCancel);
+
+            if (promptForm.ShowDialog() == DialogResult.OK)
+            {
+                if (int.TryParse(txtInput.Text, out int result))
+                {
+                    return result;
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, ingresa un número entero válido.");
+                    return -1;
+                }
+            }
+            else
+            {
+                return -1; 
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string prompt = "Ingrese la cantidad de votos deseada:";
+            string title = "Ingresar Cantidad de Votos";
+
+            int cantidadVotos = MostrarInputBox(prompt, title);
+
+            if (cantidadVotos > 0)
+            {
+                SimularVotos(cantidadVotos);
+            }
+            else if (cantidadVotos == 0)
+            {
+                MessageBox.Show("La cantidad de votos no puede ser cero.");
+            }
+            else
+            {
+                MessageBox.Show("Operación cancelada o cantidad de votos no válida.");
+            }
         }
     }
 }
