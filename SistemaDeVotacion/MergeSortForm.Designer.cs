@@ -38,7 +38,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(18, 12);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(250, 420);
+            dataGridView1.Size = new Size(294, 420);
             dataGridView1.TabIndex = 0;
             // 
             // buttonRegresar
@@ -56,7 +56,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(284, 511);
+            ClientSize = new Size(324, 511);
             Controls.Add(buttonRegresar);
             Controls.Add(dataGridView1);
             Name = "MergeSortForm";

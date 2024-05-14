@@ -147,7 +147,12 @@ namespace SistemaDeVotacion
         private void SimularVotos(int cantidadVotos)
         {
             CandidatoDao candidatoDao = new CandidatoDao();
+            DepartamentoDao departamentoDao = new DepartamentoDao();
+
             int maxCandidatoID = candidatoDao.ObtenerMaximoID();
+            int minCandidatoId = candidatoDao.ObtenerMinimoID();
+            int maxDepartamentoId = departamentoDao.ObtenerMaximoID();
+            int minDepartamentoId = departamentoDao.ObtenerMinimoID();
 
             Random random = new Random();
 
@@ -158,8 +163,8 @@ namespace SistemaDeVotacion
                     for (int i = 0; i < cantidadVotos; i++)
                     {
                         // Generar IDs aleatorios para candidato y departamento dentro del rango válido
-                        int candidatoID = random.Next(1, maxCandidatoID + 1);
-                        int departamentoID = random.Next(1, 32 + 1);
+                        int candidatoID = random.Next(minCandidatoId, maxCandidatoID + 1);
+                        int departamentoID = random.Next(minDepartamentoId, maxDepartamentoId + 1);
 
                         // Insertar voto en la base de datos
                         SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());
