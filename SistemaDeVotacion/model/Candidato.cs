@@ -27,7 +27,11 @@ namespace SistemaDeVotacion.model
 
         public string NombreCompletoYPartido
         {
+<<<<<<< HEAD
             get { return $"{Nombre} {Apellido} "; }
+=======
+            get { return $"{id} {Nombre} {Apellido} {Partido.Nombre}"; }
+>>>>>>> feature/sorting
         }
 
         internal Partido Partido { get => partido; set => partido = value; }

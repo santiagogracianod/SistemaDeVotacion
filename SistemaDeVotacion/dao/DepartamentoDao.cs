@@ -5,8 +5,17 @@ using System.Data;
 
 namespace SistemaDeVotacion.dao
 {
+    
+
     internal class DepartamentoDao
     {
+        private DbConnection db;
+
+        public DepartamentoDao()
+        {
+            db = new DbConnection();
+        }
+
         public List<Departamento> buscarDepartamentos() {
             DbConnection db = new DbConnection();
             List<Departamento> departamentos = new List<Departamento>();
@@ -43,6 +52,70 @@ namespace SistemaDeVotacion.dao
             }
          
             return departamentos;
+        }
+
+        public int ObtenerMaximoID()
+        {
+            int maxID = 0;
+
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT MAX(id) FROM departamento", db.GetConnection());
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        maxID = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el máximo ID de departamento: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+
+            return maxID;
+        }
+
+        public int ObtenerMinimoID()
+        {
+            int minId = 0;
+
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT MIN(id) FROM departamento", db.GetConnection());
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        minId = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el minimo ID de departamento: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+
+            return minId;
         }
 
         public Dictionary<string, int> votosPorDepartamento() {

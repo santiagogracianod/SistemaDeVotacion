@@ -48,7 +48,40 @@ namespace SistemaDeVotacion.dao
             return maxID;
         }
 
-        // Otros métodos del CandidatoDao...
+        public int ObtenerMinimoID()
+        {
+            int minId = 0;
+
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT MIN(id) FROM candidato", db.GetConnection());
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        minId= Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el minimo ID de candidato: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+
+            return minId;
+        }
+
+
+        // Otros métodos del CandidatoDao
 
         public List<Candidato> buscarCandidatosPorDepartamento(string departamento)
         {
