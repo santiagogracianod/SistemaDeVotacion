@@ -40,7 +40,7 @@
             buttonAgregarCandidato = new Button();
             button8 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            btnVotosCandidato = new Button();
             button5 = new Button();
             button4 = new Button();
             comboBox1 = new ComboBox();
@@ -155,7 +155,7 @@
             panelAdministrador.Controls.Add(buttonAgregarCandidato);
             panelAdministrador.Controls.Add(button8);
             panelAdministrador.Controls.Add(button2);
-            panelAdministrador.Controls.Add(button3);
+            panelAdministrador.Controls.Add(btnVotosCandidato);
             panelAdministrador.Controls.Add(button5);
             panelAdministrador.Dock = DockStyle.Fill;
             panelAdministrador.Location = new Point(0, 0);
@@ -198,15 +198,16 @@
             button2.UseWaitCursor = true;
             button2.Click += button2_Click;
             // 
-            // button3
+            // btnVotosCandidato
             // 
-            button3.Location = new Point(170, 183);
-            button3.Name = "button3";
-            button3.Size = new Size(149, 42);
-            button3.TabIndex = 1;
-            button3.Text = "Votos por candidato";
-            button3.UseVisualStyleBackColor = true;
-            button3.UseWaitCursor = true;
+            btnVotosCandidato.Location = new Point(170, 183);
+            btnVotosCandidato.Name = "btnVotosCandidato";
+            btnVotosCandidato.Size = new Size(149, 42);
+            btnVotosCandidato.TabIndex = 1;
+            btnVotosCandidato.Text = "Votos por candidato";
+            btnVotosCandidato.UseVisualStyleBackColor = true;
+            btnVotosCandidato.UseWaitCursor = true;
+            btnVotosCandidato.Click += btnVotosCandidato_Click;
             // 
             // button5
             // 
@@ -283,7 +284,7 @@
         private Button button4;
         private Panel panelAdministrador;
         private Button button2;
-        private Button button3;
+        private Button btnVotosCandidato;
         private Button button5;
         private Button button8;
         private Button buttonAgregarCandidato;

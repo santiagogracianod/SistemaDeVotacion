@@ -129,5 +129,49 @@ namespace SistemaDeVotacion.dao
                 return false;
             }
         }
+
+        public List<Candidato> votosPorCandidato()
+        {
+            DbConnection db = new DbConnection();
+            List<Candidato> candidatos = new List<Candidato>();
+
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    string sql = "SELECT c.id, c.nombre, c.apellidos as apellido, COUNT(v.id) AS 'Votos' " +
+                            "FROM candidato c LEFT JOIN votos v ON c.id = v.id_candidato " +
+                            "GROUP BY c.id, c.nombre,c.apellidos";
+                    SqlCommand cmd = new SqlCommand(sql, db.GetConnection());
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Iterar sobre cada fila de la tabla y agregar un objeto Candidato a la lista
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Candidato candidato = new Candidato
+                        {
+                            Id = Convert.ToInt32(row["id"]),
+                            Nombre = Convert.ToString(row["nombre"]),
+                            Apellido = Convert.ToString(row["apellido"]),
+                            Votos = Convert.ToInt32(row["Votos"])
+                        };
+                        candidatos.Add(candidato);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+
+            return candidatos;
+        }
+
     }
 }

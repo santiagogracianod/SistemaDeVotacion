@@ -19,6 +19,8 @@ namespace SistemaDeVotacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("********************");
+
             panelAdministrador.Visible = false;
         }
 
@@ -164,7 +166,7 @@ namespace SistemaDeVotacion
                         // Insertar voto en la base de datos
                         SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());
                         cmd.Parameters.AddWithValue("@CandidatoID", candidatoID);
-                        
+
                         cmd.ExecuteNonQuery();
                     }
 
@@ -219,7 +221,7 @@ namespace SistemaDeVotacion
             }
             else
             {
-                return -1; 
+                return -1;
             }
         }
 
@@ -242,6 +244,18 @@ namespace SistemaDeVotacion
             {
                 MessageBox.Show("Operación cancelada o cantidad de votos no válida.");
             }
+        }
+
+        private void btnVotosCandidato_Click(object sender, EventArgs e)
+        {
+            CandidatoDao candidatoDao = new CandidatoDao();
+            List<Candidato> votosPorCandidatos = candidatoDao.votosPorCandidato();
+
+            List<Candidato> votosOrdenados = OrdenemientoCountingSort.OrdenarPorVotos(votosPorCandidatos);
+
+            
+            DistribucionForm distribucion = new DistribucionForm(votosOrdenados);
+            distribucion.Show();
         }
     }
 }
