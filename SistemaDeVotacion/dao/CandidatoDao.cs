@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace SistemaDeVotacion.dao
 {
-    internal class CandidatoDao
+    public class CandidatoDao
     {
         private DbConnection db;
 
@@ -45,7 +45,9 @@ namespace SistemaDeVotacion.dao
                 MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
             }
 
-            return maxID;
+            return 200;
+
+           // return maxID;
         }
 
         public int ObtenerMinimoID()
