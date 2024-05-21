@@ -258,9 +258,26 @@ namespace SistemaDeVotacion
 
             List<Candidato> votosOrdenados = OrdenemientoCountingSort.OrdenarPorVotos(votosPorCandidatos);
 
-            
+
             DistribucionForm distribucion = new DistribucionForm(votosOrdenados);
             distribucion.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            PartidoDao partidoDao = new PartidoDao();
+
+            List<KeyValuePair<string, int>> votosPorPartido = partidoDao.votosPorPartido();
+            OrdenamientoMezclaMultivía.OrdenarMultiVias(votosPorPartido); // Ordenamos los votos directamente
+
+            OrdenamientoMultiviaForm distribucion = new OrdenamientoMultiviaForm(votosPorPartido); // Pasamos la lista ordenada al formulario
+            distribucion.Show();
+        }
+
+
+        private void panelAdministrador_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

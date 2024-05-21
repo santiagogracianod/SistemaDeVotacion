@@ -11,6 +11,7 @@ namespace SistemaDeVotacion.dao
 {
     internal class PartidoDao
     {
+
         public List<Partido> buscarPartido()
         {
             DbConnection db = new DbConnection();
@@ -48,5 +49,51 @@ namespace SistemaDeVotacion.dao
            
             return partidos;
         }
+
+        public List<KeyValuePair<string, int>> votosPorPartido()
+        {
+            DbConnection db = new DbConnection();
+            List<KeyValuePair<string, int>> votosPorPartido = new List<KeyValuePair<string, int>>();
+
+            if (db.OpenConnection())
+            {
+                try
+                {
+                    string query = "SELECT p.nombre, COUNT(v.id) AS votos " +
+                                   "FROM partido p " +
+                                   "LEFT JOIN candidato c ON p.id = c.id_partido " +
+                                   "LEFT JOIN votos v ON c.id = v.id_candidato " +
+                                   "GROUP BY p.nombre";
+
+                    SqlCommand cmd = new SqlCommand(query, db.GetConnection());
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string nombrePartido = Convert.ToString(reader["nombre"]);
+                        int votos = Convert.ToInt32(reader["votos"]);
+                        votosPorPartido.Add(new KeyValuePair<string, int>(nombrePartido, votos));
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener los votos por partido: " + ex.Message);
+                }
+                finally
+                {
+                    db.CloseConnection();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+            }
+
+            return votosPorPartido;
+        }
+
+
     }
 }

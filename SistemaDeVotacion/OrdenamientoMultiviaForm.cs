@@ -1,12 +1,14 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SistemaDeVotacion
 {
-    public partial class MergeSortForm : Form
+    public partial class OrdenamientoMultiviaForm : Form
     {
-        private Dictionary<string, int> votosOrdenados;
+        private List<KeyValuePair<string, int>> votosOrdenados;
 
-        public MergeSortForm(Dictionary<string, int> votosOrdenados)
+        public OrdenamientoMultiviaForm(List<KeyValuePair<string, int>> votosOrdenados)
         {
             InitializeComponent();
             this.votosOrdenados = votosOrdenados;
@@ -26,7 +28,7 @@ namespace SistemaDeVotacion
             this.Close();
         }
 
-        private void MergeSortForm_Load(object sender, EventArgs e)
+        private void OrdenamientoMultiviaForm_Load(object sender, EventArgs e)
         {
 
         }

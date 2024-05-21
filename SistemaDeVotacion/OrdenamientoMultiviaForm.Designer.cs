@@ -1,6 +1,6 @@
 ﻿namespace SistemaDeVotacion
 {
-    partial class MergeSortForm
+    partial class OrdenamientoMultiviaForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,43 +29,27 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            buttonRegresar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(21, 16);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(54, 57);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(336, 560);
+            dataGridView1.Size = new Size(353, 363);
             dataGridView1.TabIndex = 0;
             // 
-            // buttonRegresar
-            // 
-            buttonRegresar.Location = new Point(114, 619);
-            buttonRegresar.Margin = new Padding(3, 4, 3, 4);
-            buttonRegresar.Name = "buttonRegresar";
-            buttonRegresar.Size = new Size(114, 47);
-            buttonRegresar.TabIndex = 1;
-            buttonRegresar.Text = "Regresar";
-            buttonRegresar.UseVisualStyleBackColor = true;
-            buttonRegresar.Click += buttonRegresar_Click;
-            // 
-            // MergeSortForm
+            // OrdenamientoMultiviaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
-            ClientSize = new Size(370, 681);
-            Controls.Add(buttonRegresar);
+            ClientSize = new Size(475, 450);
             Controls.Add(dataGridView1);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "MergeSortForm";
-            Text = "MergeSortForm";
-            Load += MergeSortForm_Load;
+            Name = "OrdenamientoMultiviaForm";
+            Text = "OrdenamientoMultiviaForm";
+            Load += OrdenamientoMultiviaForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -73,6 +57,5 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button buttonRegresar;
     }
 }

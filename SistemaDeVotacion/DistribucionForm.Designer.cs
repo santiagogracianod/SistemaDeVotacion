@@ -35,17 +35,21 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(81, 12);
+            dataGridView1.Location = new Point(93, 16);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(240, 298);
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(274, 397);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // DistribucionForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(400, 450);
+            ClientSize = new Size(457, 600);
             Controls.Add(dataGridView1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DistribucionForm";
             Text = "DistribucionForm";
             Load += DistribucionForm_Load;

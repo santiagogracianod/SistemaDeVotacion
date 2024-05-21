@@ -14,6 +14,7 @@ namespace SistemaDeVotacion
     public partial class DistribucionForm : Form
     {
         private List<Candidato> candidatosOrdenados; // Cambiar el tipo de datos a List<Candidato>
+        private List<KeyValuePair<string, int>> votosPorPartido;
 
         public DistribucionForm(List<Candidato> candidatosOrdenados) // Modificar el constructor
         {
@@ -22,6 +23,10 @@ namespace SistemaDeVotacion
             MostrarVotosOrdenados();
         }
 
+        public DistribucionForm(List<KeyValuePair<string, int>> votosPorPartido)
+        {
+            this.votosPorPartido = votosPorPartido;
+        }
 
         private void DistribucionForm_Load(object sender, EventArgs e)
         {
@@ -34,7 +39,12 @@ namespace SistemaDeVotacion
             dataGridView1.DataSource = dataForGrid.ToList(); // Convertir a Lista para enlace
 
             // Asignar los votos ordenados al DataSource del DataGridView
-          //  dataGridView1.DataSource = candidatosOrdenados; // No es necesario crear un nuevo BindingSource
+            //  dataGridView1.DataSource = candidatosOrdenados; // No es necesario crear un nuevo BindingSource
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
