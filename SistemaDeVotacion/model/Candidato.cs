@@ -30,6 +30,6 @@ namespace SistemaDeVotacion.model
             get { return $"{id} {Nombre} {Apellido} {Partido.Nombre}"; }
         }
 
-        internal Partido Partido { get => partido; set => partido = value; }
+        public Partido Partido { get => partido; set => partido = value; }
     }
 }

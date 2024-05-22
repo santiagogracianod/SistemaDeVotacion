@@ -2,7 +2,7 @@
 
 namespace SistemaDeVotacion.model
 {
-    internal class Partido
+    public class Partido
     {
         int id;
         string nombre;

@@ -14,3 +14,13 @@ Scenario: run method
 Scenario: run method2
 	When the method2 was used
 	Then the result should be 200
+
+Scenario: Buscar candidatos por departamento
+    Given un departamento con id "1"
+    When busco candidatos por departamento
+    Then deberia encontrar candidatos
+
+Scenario: Agregar un nuevo candidato
+    Given un nuevo candidato con nombre "John" y apellido "Doe"
+    When agrego el candidato
+    Then el candidato debería ser agregado exitosamente
