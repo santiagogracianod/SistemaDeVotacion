@@ -6,13 +6,10 @@ namespace SistemaDeVotacion.servicios
     {
         public static Dictionary<string, int> votosPorDepartamento(Dictionary<string, int> votos)
         {
-            // Crear una lista de KeyValuePair a partir del Dictionary para ordenar
             List<KeyValuePair<string, int>> listaVotos = new List<KeyValuePair<string, int>>(votos);
 
-            // Ordenar la lista utilizando el algoritmo de ordenamiento por mezcla
             MergeSort(listaVotos);
 
-            // Crear un nuevo Dictionary a partir de la lista ordenada
             Dictionary<string, int> votosOrdenados = new Dictionary<string, int>();
             foreach (var kvp in listaVotos)
             {
@@ -22,7 +19,6 @@ namespace SistemaDeVotacion.servicios
             return votosOrdenados;
         }
 
-        // Implementación del algoritmo de ordenamiento por mezcla (Merge Sort)
         private static void MergeSort(List<KeyValuePair<string, int>> lista)
         {
             if (lista.Count <= 1)
@@ -52,7 +48,6 @@ namespace SistemaDeVotacion.servicios
 
             while (i < izquierda.Count && j < derecha.Count)
             {
-                // Comparar de mayor a menor (cambiar el signo de comparación)
                 if (izquierda[i].Value >= derecha[j].Value)
                 {
                     lista[k] = izquierda[i];
@@ -66,7 +61,6 @@ namespace SistemaDeVotacion.servicios
                 k++;
             }
 
-            // Agregar los elementos restantes de la lista izquierda
             while (i < izquierda.Count)
             {
                 lista[k] = izquierda[i];
@@ -74,7 +68,6 @@ namespace SistemaDeVotacion.servicios
                 k++;
             }
 
-            // Agregar los elementos restantes de la lista derecha
             while (j < derecha.Count)
             {
                 lista[k] = derecha[j];

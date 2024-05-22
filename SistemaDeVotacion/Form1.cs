@@ -70,20 +70,16 @@ namespace SistemaDeVotacion
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // Verificar si se han seleccionado candidato y departamento
             if (comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
             {
                 MessageBox.Show("Por favor selecciona un candidato y un departamento.");
                 return;
             }
 
-            // Obtener el ID del departamento seleccionado en el ComboBox
             int candidatoID = (int)comboBox2.SelectedValue;
 
-            // Obtener el ID del cantidado seleccionado en el ComboBox
             int departamentoID = (int)comboBox1.SelectedValue;
-
-            // Guardar el voto en la base de datos
+   
             if (db.OpenConnection())
             {
                 try
@@ -110,17 +106,15 @@ namespace SistemaDeVotacion
         }
 
         private void buttonAdmin_Click(object sender, EventArgs e)
-        {
-            // panelVotantes.SendToBack(); // Asegura que panelVotantes esté detrás de panelAdministrador
-            panelAdministrador.BringToFront(); // Asegura que panelAdministrador esté en la parte superior
-            //panelVotantes.Visible = false;
+        {          
+            panelAdministrador.BringToFront(); 
             panelAdministrador.Visible = true;
         }
 
         private void buttonVotantes_Click(object sender, EventArgs e)
         {
             panelAdministrador.Visible = false;
-            panelVotantes.BringToFront(); // Asegura que panelVotantes esté en la parte superior
+            panelVotantes.BringToFront(); 
             panelVotantes.Visible = true;
         }
 
@@ -164,11 +158,9 @@ namespace SistemaDeVotacion
                 {
                     for (int i = 0; i < cantidadVotos; i++)
                     {
-                        // Generar IDs aleatorios para candidato y departamento dentro del rango válido
                         int candidatoID = random.Next(minCandidatoId, maxCandidatoID);
                         int departamentoID = random.Next(minDepartamentoId, maxDepartamentoId);
-
-                        // Insertar voto en la base de datos
+             
                         SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());
                         cmd.Parameters.AddWithValue("@CandidatoID", candidatoID);
 
@@ -268,12 +260,11 @@ namespace SistemaDeVotacion
             PartidoDao partidoDao = new PartidoDao();
 
             List<KeyValuePair<string, int>> votosPorPartido = partidoDao.votosPorPartido();
-            OrdenamientoMezclaMultivía.OrdenarMultiVias(votosPorPartido); // Ordenamos los votos directamente
+            OrdenamientoMezclaMultivía.OrdenarMultiVias(votosPorPartido); 
 
-            OrdenamientoMultiviaForm distribucion = new OrdenamientoMultiviaForm(votosPorPartido); // Pasamos la lista ordenada al formulario
+            OrdenamientoMultiviaForm distribucion = new OrdenamientoMultiviaForm(votosPorPartido); 
             distribucion.Show();
         }
-
 
         private void panelAdministrador_Paint(object sender, PaintEventArgs e)
         {

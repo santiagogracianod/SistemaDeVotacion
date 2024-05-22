@@ -82,8 +82,6 @@ namespace SistemaDeVotacion.dao
         }
 
 
-        // Otros métodos del CandidatoDao
-
         public List<Candidato> buscarCandidatosPorDepartamento(string departamento)
         {
             List<Candidato> candidatos = new List<Candidato>();
@@ -144,7 +142,6 @@ namespace SistemaDeVotacion.dao
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
-                    // Verificar si se insertó correctamente
                     return rowsAffected > 0;
                 }
                 catch (Exception ex)
@@ -180,8 +177,7 @@ namespace SistemaDeVotacion.dao
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-
-                    // Iterar sobre cada fila de la tabla y agregar un objeto Candidato a la lista
+              
                     foreach (DataRow row in dt.Rows)
                     {
                         Candidato candidato = new Candidato

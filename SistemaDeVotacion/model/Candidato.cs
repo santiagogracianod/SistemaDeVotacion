@@ -22,7 +22,7 @@ namespace SistemaDeVotacion.model
         public string Apellido { get => apellido; set => apellido = value; }
         public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
         public int Edad { get => edad; set => edad = value; }
-        public int Votos { get => votos; set => votos = value; } // Agregar la propiedad para acceder a la cantidad de votos
+        public int Votos { get => votos; set => votos = value; }
 
 
         public string NombreCompletoYPartido
