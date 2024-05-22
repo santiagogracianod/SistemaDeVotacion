@@ -78,10 +78,10 @@ namespace SistemaDeVotacion
             }
 
             // Obtener el ID del departamento seleccionado en el ComboBox
-            int candidatoID = (int)comboBox1.SelectedValue;
+            int candidatoID = (int)comboBox2.SelectedValue;
 
             // Obtener el ID del cantidado seleccionado en el ComboBox
-            int departamentoID = (int)comboBox2.SelectedValue;
+            int departamentoID = (int)comboBox1.SelectedValue;
 
             // Guardar el voto en la base de datos
             if (db.OpenConnection())
@@ -165,8 +165,8 @@ namespace SistemaDeVotacion
                     for (int i = 0; i < cantidadVotos; i++)
                     {
                         // Generar IDs aleatorios para candidato y departamento dentro del rango válido
-                        int candidatoID = random.Next(minCandidatoId, maxCandidatoID + 1);
-                        int departamentoID = random.Next(minDepartamentoId, maxDepartamentoId + 1);
+                        int candidatoID = random.Next(minCandidatoId, maxCandidatoID);
+                        int departamentoID = random.Next(minDepartamentoId, maxDepartamentoId);
 
                         // Insertar voto en la base de datos
                         SqlCommand cmd = new SqlCommand("INSERT INTO votos (id_candidato, fecha) VALUES (@CandidatoID, GETDATE())", db.GetConnection());

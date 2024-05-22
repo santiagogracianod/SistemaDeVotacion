@@ -67,8 +67,8 @@ namespace SpecFlowSistemaVotacion.Specs.StepDefinitions
                 Nombre = nombre,
                 Apellido = apellido,
                 Edad = 40, // Ajusta según tu modelo
-                IdDepartamento = 1, // Ajusta según tu modelo
-                Partido = new Partido { Id = 1 } // Ajusta según tu modelo
+                IdDepartamento = 1251, // Ajusta según tu modelo
+                Partido = new Partido { Id = 9 } // Ajusta según tu modelo
             };
         }
 

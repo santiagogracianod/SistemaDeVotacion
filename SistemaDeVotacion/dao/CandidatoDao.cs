@@ -45,9 +45,8 @@ namespace SistemaDeVotacion.dao
                 MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
             }
 
-            return 200;
 
-           // return maxID;
+            return maxID;
         }
 
         public int ObtenerMinimoID()

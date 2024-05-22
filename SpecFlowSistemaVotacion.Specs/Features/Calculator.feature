@@ -8,15 +8,15 @@ Link to a feature: [Calculator](SpecFlowSistemaVotacion.Specs/Features/Calculato
 @mytag
 Scenario: run method
 	When the method was used
-	Then the result should be 200
+	Then the result should be 12618
 
 
 Scenario: run method2
 	When the method2 was used
-	Then the result should be 200
+	Then the result should be 2307
 
 Scenario: Buscar candidatos por departamento
-    Given un departamento con id "1"
+    Given un departamento con id "1300"
     When busco candidatos por departamento
     Then deberia encontrar candidatos
 

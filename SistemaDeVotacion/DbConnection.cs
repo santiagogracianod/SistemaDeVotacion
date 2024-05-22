@@ -16,7 +16,7 @@ namespace SistemaDeVotacion
         public DbConnection()
         {
             // Aquí puedes establecer tu cadena de conexión
-            connectionString = "Data Source=JUAN;Initial Catalog=sistema_votacion; Integrated Security=True";
+            connectionString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=sistema_votacion; Integrated Security=True";
             connection = new SqlConnection(connectionString);
         }
 
