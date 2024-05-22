@@ -42,9 +42,9 @@
             button2 = new Button();
             btnVotosCandidato = new Button();
             button5 = new Button();
-            button4 = new Button();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
+            button4 = new Button();
             pMenu.SuspendLayout();
             panelVotantes.SuspendLayout();
             panelAdministrador.SuspendLayout();
@@ -68,7 +68,7 @@
             buttonAdmin.Cursor = Cursors.Hand;
             buttonAdmin.FlatAppearance.BorderSize = 0;
             buttonAdmin.FlatStyle = FlatStyle.Flat;
-            buttonAdmin.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonAdmin.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAdmin.ForeColor = Color.White;
             buttonAdmin.Location = new Point(289, 0);
             buttonAdmin.Margin = new Padding(3, 4, 3, 4);
@@ -98,7 +98,7 @@
             buttonVotantes.Cursor = Cursors.Hand;
             buttonVotantes.FlatAppearance.BorderSize = 0;
             buttonVotantes.FlatStyle = FlatStyle.Flat;
-            buttonVotantes.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonVotantes.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonVotantes.ForeColor = Color.White;
             buttonVotantes.Location = new Point(90, 0);
             buttonVotantes.Margin = new Padding(3, 4, 3, 4);
@@ -248,6 +248,9 @@
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.White;
+            comboBox1.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.ForeColor = Color.Black;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(194, 67);
             comboBox1.Margin = new Padding(3, 4, 3, 4);
@@ -257,6 +260,8 @@
             comboBox1.Text = "Departamento";
             comboBox1.UseWaitCursor = true;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.FlatStyle = FlatStyle.Flat; 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList; 
             // 
             // comboBox2
             // 
@@ -268,6 +273,10 @@
             comboBox2.TabIndex = 1;
             comboBox2.Text = "Candidato";
             comboBox2.UseWaitCursor = true;
+            comboBox2.BackColor = Color.White;
+            comboBox2.ForeColor = Color.Black;
+            comboBox2.FlatStyle = FlatStyle.Flat; // Esto cambia el estilo del borde
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList; //
             // 
             // Form1
             // 

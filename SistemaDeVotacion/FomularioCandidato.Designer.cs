@@ -36,6 +36,35 @@
             comboBoxDepartamento = new ComboBox();
             textBoxEdad = new TextBox();
             SuspendLayout();
+
+
+            // Establecer el estilo de las fuentes
+            textBoxNombre.Font = new Font("Arial", 10F, FontStyle.Regular);
+            textBoxApellido.Font = new Font("Arial", 10F, FontStyle.Regular);
+            textBoxEdad.Font = new Font("Arial", 10F, FontStyle.Regular);
+            comboBoxPartido.Font = new Font("Arial", 10F, FontStyle.Regular);
+            comboBoxDepartamento.Font = new Font("Arial", 10F, FontStyle.Regular);
+
+            // Establecer el color de fondo de los controles
+            textBoxNombre.BackColor = Color.White;
+            textBoxApellido.BackColor = Color.White;
+            textBoxEdad.BackColor = Color.White;
+            comboBoxPartido.BackColor = Color.White;
+            comboBoxDepartamento.BackColor = Color.White;
+
+            // Establecer el color del texto de los controles
+            textBoxNombre.ForeColor = Color.Black;
+            textBoxApellido.ForeColor = Color.Black;
+            textBoxEdad.ForeColor = Color.Black;
+            comboBoxPartido.ForeColor = Color.Black;
+            comboBoxDepartamento.ForeColor = Color.Black;
+
+            // Establecer el estilo de la ComboBox
+            comboBoxPartido.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDepartamento.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+
             // 
             // buttonAceptar
             // 
@@ -122,6 +151,14 @@
             Load += FomularioCandidato_Load;
             ResumeLayout(false);
             PerformLayout();
+
+
+
+    
+
+
+
+
         }
 
         #endregion
